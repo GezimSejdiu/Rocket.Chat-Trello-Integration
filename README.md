@@ -6,7 +6,7 @@
 ## How To
 1. Checkout the project
    ```
-   git clone https://github.com/gezims/Rocket.Chat-Trello-Integration
+   git clone https://github.com/GezimSejdiu/Rocket.Chat-Trello-Integration
    cd Rocket.Chat-Trello-Integration
    ```
 1. Create an incoming webhook in your RocketChat
@@ -16,7 +16,7 @@
    1. Select the channel where you will receive the alerts (ex: #sda.tech-events). You may wish to create a dedicated channel for your notifications.
    1. Select an account from which the alerts will be posted (usually rocket.chat bot account is used).
    1. Set **"Script Enabled"** to **"True"**
-   1. Paste [Trello.js](https://github.com/gezims/Rocket.Chat-Trello-Integration/blob/master/Trello.js) inside the Script field.
+   1. Paste [Trello.js](https://github.com/GezimSejdiu/Rocket.Chat-Trello-Integration/blob/master/Trello.js) inside the Script field.
    1. Save the integration. This will generate a webhook URL and secret for you.
    1. Use the generated **WebHook URL** to POST messages to Rocket.Chat
 1. Go to Trello Webhooks API [Sandbox](https://developers.trello.com/sandbox) and enter your Trello API Key to get started.
