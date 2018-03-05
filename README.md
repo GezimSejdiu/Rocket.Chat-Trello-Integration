@@ -1,5 +1,5 @@
 # Rocket.Chat-Trello-Integration
->Integration between Trello and Rocket.Chat: send Trello activity notifications to Rocket.Chat channels.
+>A Rocket.Chat [Trello](https://trello.com/) integration to send activity notifications to Rocket.Chat channels.
 
 ![image](Rocket.Chat-Trello-Integration.png)
 
@@ -15,14 +15,14 @@
    1. Save the integration. This will generate a webhook URL and secret for you.
    1. Use the generated **WebHook URL** to POST messages to Rocket.Chat
 1. Go to [Trello's REST API](https://developers.trello.com/v1.0/reference) and enter your [Trello API Key](https://trello.com/app-key) and your Token to get started.
-   1. After you have been connected to the Trello’s REST API you may wish to **[Get /boards/{id}](https://developers.trello.com/v1.0/reference#boardsboardid-1)** which request a single board you are looking for, by providing the **ID** of the board as a parameter (Press **Try it** to get the result).
+   1. After you have been connected to the Trello’s REST API you may wish to **[Get /boards/{id}](https://developers.trello.com/v1.0/reference#boardsboardid-1)** which request a single board you are looking for, by providing the **ID** of the board as a parameter (For example in the URL https://trello.com/b/Id0fth3B0rD/board-name, the ID would be `Id0fth3B0rD`). Press **Try it** to get the result.
    1. Select `"id": "idModel"` of a board which you would like to create POST messages to Rocket.Chat.
    1. Go to **[Create Webhook](https://developers.trello.com/v1.0/reference#webhooks-2)** in the Trello’s REST API and add your WebHook URL (**callbackURL**), Board Id (**idModel**) and other parameters as below:
    ```javascript
    description : ”Trello-YourChannel-Webhook”
    callbackURL:  "WebHook URL"
-   idModel: "ID of the model to be monitored"
+   idModel: "ID of the model to be monitored (which you obtained above)"
    active: "true"
    ```
    1. Press **Try it** to make it works.
-1. The integration is ready to generate notifications for the given Board :) Enjoy it!
+1. The integration is ready to generate notifications for the given board :) Enjoy it!
