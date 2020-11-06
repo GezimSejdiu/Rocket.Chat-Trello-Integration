@@ -39,7 +39,7 @@ class Script {
     var board_link = request.content.action.data.board.shortLink;
     var board_name = request.content.action.data.board.name;
 
-    var user_avatar = "https://trello-avatars.s3.amazonaws.com/"+request.content.action.memberCreator.avatarHash +"/170.png";
+    var user_avatar = request.content.action.memberCreator.avatarUrl +"/50.png";
 
     var message_text = author_name;
 
@@ -87,8 +87,6 @@ class Script {
     /** If a card is created */
     else if (request.content.action.type == "createCard") {
        var list_name = request.content.action.data.list.name;
-       //message_text += " added a new card to the list: " + request.content.model.name;
-      //message_text += ' added a new card "['+card_name+'](https://trello.com/c/'+card_link+')" to the list ['+list_name+'](https://trello.com/b/'+board_link+')';
        message_text = " New card ["+card_name+"](https://trello.com/c/"+card_link+") added to list ["+list_name+"](https://trello.com/b/"+board_link+")"
        url             = "https://trello.com/c/"+request.content.action.data.card.shortLink;
        title_text      = card_name;
@@ -97,19 +95,14 @@ class Script {
     else if (request.content.action.type == "deleteCard") {
       var list_name = request.content.action.data.list.name;
         message_text = "Card [#"+request.content.action.data.card.idShort+"](https://trello.com/c/"+card_link+") deleted from list ["+list_name+"](https://trello.com/b/"+board_link+")"
-        //message_text += " deleted a card";
         url             = "https://trello.com/c/"+request.content.action.data.card.shortLink;
         title_text      = "";
     }
     /** If a card is updated */
     else if (request.content.action.type == "updateCard") {
       var data = request.content.action.data;
-     //if data.get('listAfter') and data.get('listBefore'):
        if(data.listBefore){//moveCardToList
-         //var list_name = request.content.action.data.list.name;
-
         message_text = 'Card moved: "['+card_name+'](https://trello.com/c/'+card_link+')" from list "' + data.listBefore.name + "' to '" + data.listAfter.name + "'";
-         //request.content.action.data.listBefore.name + "' to '" + request.content.action.data.listAfter.name + "'";
        }
     else if(data.old.name){//renameCard
           var card_old_name = data.old.name;
@@ -123,7 +116,6 @@ class Script {
             card_desc ='from "' + old_desc + '" to "' + card_desc +'"';
           }
           message_text = 'Card updated: "['+card_name+'](https://trello.com/c/'+card_link+')"\n**Description**: '+ card_desc +'';
-         //message_text    = JSON.stringify(request.content.action.data) +'Card renamed from "'+card_old_name+'" to "['+card_name+'](https://trello.com/c/'+card_link+')"'
       }
     else if(data.card.due!=data.old.due){//updateCardDueDate
          var card_due = data.card.due;
@@ -189,19 +181,15 @@ class Script {
 
     if (url == undefined || message_text == author_name) return;
 
-    /** For debugging purpose. It displays the entire message contents sent by Trello */
-  //message_text = JSON.stringify(request.content);
+  /** For debugging purpose. It displays the entire message contents sent by Trello */
+  // message_text = JSON.stringify(request.content);
 
     return {
       content:{
         alias: author_name,
         icon_url:user_avatar,
-        //text: message_text,
          "attachments": [{
-           "color": "#FF0000",
-           //"author_name": request.content.action.memberCreator.avatarHash,
-           //"author_link": url,
-          // "author_icon": request.content.action.memberCreator.avatarHash,
+           "color": "#008FE4",
            "title": request.content.model.name,
            "title_link": request.content.model.shortUrl,
            "text": message_text +"\n" +attachment_text
