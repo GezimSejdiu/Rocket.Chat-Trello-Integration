@@ -19,7 +19,7 @@
    Run: 
       ```sh
       curl --request GET \
-        --url 'https://api.trello.com/1/boards/{id}?key={key}={token}' \
+        --url 'https://api.trello.com/1/boards/{id}?key={key}&token={token}' \
         --header 'Accept: application/json'
       ```
       to get the result, where key/token are comming from the [Trello API Key](https://trello.com/app-key).
